@@ -1,4 +1,4 @@
-# Book Store
+# Book Store - Admin Part
 
 Simple CRUD app using:
 - Spring Boot
