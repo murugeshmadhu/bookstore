@@ -56,7 +56,7 @@ public class BookController {
 
 	@GetMapping("/book/{id}/edit")
 	public String editBook(@PathVariable("id") Long id, Model model) {
-		model.addAttribute("book", bookService.findOne(id));
+		model.addAttribute("book", bookService.findBookById(id));
 		return "form";
 	}
 
