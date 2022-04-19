@@ -1,6 +1,5 @@
 package com.crni99.bookstore.controller;
 
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
@@ -30,24 +29,9 @@ public class BookController {
 		return "list";
 	}
 
-	@GetMapping("/book/search")
-	public String search(@RequestParam("term") String term, Model model) {
-		if (StringUtils.isEmpty(term)) {
-			return "redirect:/book";
-		}
-		model.addAttribute("books", bookService.search(term));
-		return "list";
-	}
-
 	@GetMapping("/book/add")
 	public String add(Model model) {
 		model.addAttribute("book", new Book());
-		return "form";
-	}
-
-	@GetMapping("/book/{id}/edit")
-	public String edit(@PathVariable("id") Long id, Model model) {
-		model.addAttribute("book", bookService.findOne(id));
 		return "form";
 	}
 
@@ -59,6 +43,21 @@ public class BookController {
 		bookService.save(book);
 		redirect.addFlashAttribute("successMessage", "Saved book successfully!");
 		return "redirect:/book";
+	}
+	
+	@GetMapping("/book/search")
+	public String search(@RequestParam("term") String term, Model model) {
+		if (StringUtils.isEmpty(term)) {
+			return "redirect:/book";
+		}
+		model.addAttribute("books", bookService.search(term));
+		return "list";
+	}
+
+	@GetMapping("/book/{id}/edit")
+	public String edit(@PathVariable("id") Long id, Model model) {
+		model.addAttribute("book", bookService.findOne(id));
+		return "form";
 	}
 
 	@GetMapping("/book/{id}/delete")

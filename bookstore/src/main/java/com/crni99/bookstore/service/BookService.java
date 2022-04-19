@@ -20,6 +20,10 @@ public class BookService {
 	public Iterable<Book> findAll() {
 		return bookRepository.findAll();
 	}
+	
+	public void save(Book book) {
+		bookRepository.save(book);
+	}
 
 	public List<Book> search(String term) {
 		return bookRepository.findByNameContaining(term);
@@ -28,10 +32,6 @@ public class BookService {
 	public Optional<Book> findOne(Long id) {
 		Optional<Book> book = bookRepository.findById(id);
 		return book;
-	}
-
-	public void save(Book book) {
-		bookRepository.save(book);
 	}
 
 	public void delete(Long id) {
