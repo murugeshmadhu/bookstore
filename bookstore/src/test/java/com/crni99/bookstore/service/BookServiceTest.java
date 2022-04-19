@@ -96,7 +96,7 @@ class BookServiceTest {
 
 		when(bookRepository.findById(ID_1)).thenReturn(Optional.of(book));
 
-		assertThat(bookService.findOne(ID_1)).isEqualTo(Optional.of(book));
+		assertThat(bookService.findBookById(ID_1)).isEqualTo(Optional.of(book));
 	}
 
 	@Test

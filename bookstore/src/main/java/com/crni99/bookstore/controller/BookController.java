@@ -24,19 +24,19 @@ public class BookController {
 	}
 
 	@GetMapping("/book")
-	public String list(Model model) {
+	public String getAllBooks(Model model) {
 		model.addAttribute("books", bookService.findAll());
 		return "list";
 	}
 
 	@GetMapping("/book/add")
-	public String add(Model model) {
+	public String addBook(Model model) {
 		model.addAttribute("book", new Book());
 		return "form";
 	}
 
 	@PostMapping("/book/save")
-	public String save(@Validated Book book, BindingResult result, RedirectAttributes redirect) {
+	public String saveBook(@Validated Book book, BindingResult result, RedirectAttributes redirect) {
 		if (result.hasErrors()) {
 			return "form";
 		}
@@ -46,7 +46,7 @@ public class BookController {
 	}
 	
 	@GetMapping("/book/search")
-	public String search(@RequestParam("term") String term, Model model) {
+	public String searchBooks(@RequestParam("term") String term, Model model) {
 		if (StringUtils.isEmpty(term)) {
 			return "redirect:/book";
 		}
@@ -55,13 +55,13 @@ public class BookController {
 	}
 
 	@GetMapping("/book/{id}/edit")
-	public String edit(@PathVariable("id") Long id, Model model) {
+	public String editBook(@PathVariable("id") Long id, Model model) {
 		model.addAttribute("book", bookService.findOne(id));
 		return "form";
 	}
 
 	@GetMapping("/book/{id}/delete")
-	public String delete(@PathVariable Long id, RedirectAttributes redirect) {
+	public String deleteBook(@PathVariable Long id, RedirectAttributes redirect) {
 		bookService.delete(id);
 		redirect.addFlashAttribute("successMessage", "Deleted book successfully!");
 		return "redirect:/book";

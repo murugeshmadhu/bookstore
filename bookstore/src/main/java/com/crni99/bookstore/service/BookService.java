@@ -29,7 +29,7 @@ public class BookService {
 		return bookRepository.findByNameContaining(term);
 	}
 
-	public Optional<Book> findOne(Long id) {
+	public Optional<Book> findBookById(Long id) {
 		Optional<Book> book = bookRepository.findById(id);
 		return book;
 	}
