@@ -1,9 +1,7 @@
 # Book Store - Admin Part
 
 Simple CRUD app using:
-- Spring Boot
-- Spring MVC 
-- Spring Data JPA 
+- Spring
 - Thymeleaf
 - H2 database
 - Tests
