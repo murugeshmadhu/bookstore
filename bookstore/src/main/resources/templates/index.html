@@ -6,26 +6,6 @@
 	<nav th:replace="layout :: header"></nav>
 
 	<div class="container" id="main-content">
-		<div class="row">
-			<div class="col-6 no-padding">
-				<form class="form-inline" action="#" th:action="@{/book/search}"
-					method="get">
-					<input class="form-control mr-sm-2" type="search" name="term"
-						placeholder="Search by name ..." />
-					<button class="btn btn-primary" type="submit">
-						<i class="fa fa-search"></i> Search
-					</button>
-				</form>
-			</div>
-
-			<div class="col-6 no-padding">
-				<a href="#" th:href="@{/book/add}"
-					class="btn btn-success float-right"> <i
-					class="fa fa-plus-square"></i> New book
-				</a>
-			</div>
-		</div>
-
 		<div class="row mt-4">
 			<div th:if="${successMessage}"
 				class="col-12 alert alert-success alert-dismissible fade show"
@@ -54,7 +34,6 @@
 								<th>ISBN</th>
 								<th>Publisher</th>
 								<th>Published on</th>
-								<th>Action</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -66,23 +45,11 @@
 								<td th:text="${book.isbn}"></td>
 								<td th:text="${book.publisher}"></td>
 								<td th:text="${book.publishedOn}"></td>
-								<td><a href="#" th:href="@{/book/{id}/edit(id=${book.id})}"
-									class="mr-sm-2 text-primary"> <i class="fa fa-pencil"></i>
-								</a> <a href="#" th:href="@{/book/{id}/delete(id=${book.id})}"
-									class="text-danger"> <i class="fa fa-trash"></i>
-								</a></td>
 							</tr>
 						</tbody>
 					</table>
-					<h5>&nbsp;</h5>
 				</div>
 			</th:block>
-			<div class="col-6 no-padding"></div>
-			<div class="col-6 no-padding">
-				<a href="#" th:href="@{/logout}" class="btn btn-danger float-right">
-					<i class="fa fa-key"></i> Log out
-				</a>
-			</div>
 		</div>
 	</div>
 	<!-- /.container -->

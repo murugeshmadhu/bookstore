@@ -23,6 +23,12 @@ public class BookController {
 		this.bookService = bookService;
 	}
 
+	@GetMapping("/")
+	public String showIndex(Model model) {
+		model.addAttribute("books", bookService.findAll());
+		return "index";
+	}
+
 	@GetMapping("/book")
 	public String getAllBooks(Model model) {
 		model.addAttribute("books", bookService.findAll());
@@ -44,7 +50,8 @@ public class BookController {
 		redirect.addFlashAttribute("successMessage", "Saved book successfully!");
 		return "redirect:/book";
 	}
-	
+
+	@SuppressWarnings("deprecation")
 	@GetMapping("/book/search")
 	public String searchBooks(@RequestParam("term") String term, Model model) {
 		if (StringUtils.isEmpty(term)) {
