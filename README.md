@@ -1,12 +1,18 @@
 # Book Store - Admin Part
 
 Simple CRUD app using:
-- Spring
+
+- Spring Boot
+- Spring MVC
+- Spring Security
+- Spring Data JPA
 - Thymeleaf
 - H2 database
 - Tests
 
-## Screenshots
+## Username and password (Admin): ognjen
+
+# Screenshots
 ### Show all, search, edit and delete.
 ![Book](https://user-images.githubusercontent.com/89692428/164022599-fa9c6c68-9f4c-4452-92f2-445dfeb5817e.png)
 
