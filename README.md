@@ -10,12 +10,10 @@ Simple CRUD app using:
 - H2 database
 - Tests
 
-## Username and password (Admin): ognjen
-
 # Screenshots
 
 ## User part
-![Book_user](https://user-images.githubusercontent.com/89692428/169869550-2e207e6d-e777-44b8-96a2-b2ac69ee4410.png)
+![Book_user](https://user-images.githubusercontent.com/89692428/170024574-c6f11e0d-b6bd-46d8-8457-8ae052b4b9a6.jpg)
 
 ## Admin part
 ### Username and password: ognjen
