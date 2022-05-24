@@ -6,6 +6,19 @@
 	<nav th:replace="layout :: header"></nav>
 
 	<div class="container" id="main-content">
+		<div class="row">
+			<div class="col-6 no-padding">
+				<form class="form-inline" action="#" th:action="@{/search}"
+					method="get">
+					<input class="form-control mr-sm-2" type="search" name="term"
+						placeholder="Search by name ..." />
+					<button class="btn btn-primary" type="submit">
+						<i class="fa fa-search"></i> Search
+					</button>
+				</form>
+			</div>
+		</div>
+
 		<div class="row mt-4">
 			<div th:if="${successMessage}"
 				class="col-12 alert alert-success alert-dismissible fade show"
