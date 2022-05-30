@@ -42,7 +42,6 @@ public class Book {
 
 	public Book(Long id, String name, BigDecimal price, String authors, String isbn, String publisher,
 			LocalDate publishedOn) {
-		super();
 		this.id = id;
 		this.name = name;
 		this.price = price;
@@ -53,7 +52,6 @@ public class Book {
 	}
 
 	public Book() {
-		super();
 	}
 
 	public Long getId() {

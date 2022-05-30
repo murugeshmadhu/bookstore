@@ -51,7 +51,6 @@ public class BookController {
 		return "redirect:/book";
 	}
 
-	@SuppressWarnings("deprecation")
 	@GetMapping("/book/search")
 	public String searchBooks(@RequestParam("term") String term, Model model) {
 		if (StringUtils.isEmpty(term)) {
