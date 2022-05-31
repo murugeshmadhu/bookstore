@@ -9,6 +9,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -22,23 +25,33 @@ public class Book {
 	private Long id;
 
 	@Column(name = "name", nullable = false)
+	@NotBlank(message = "{book.name.notBlank}")
 	private String name;
 
 	@Column(name = "price", nullable = false)
+	@NotNull(message = "{book.price.notBlank}")
 	private BigDecimal price;
 
 	@Column(name = "authors", nullable = false)
+	@NotBlank(message = "{book.authors.notBlank}")
 	private String authors;
 
 	@Column(name = "isbn", nullable = false)
+	@NotBlank(message = "{book.isbn.notBlank}")
+	@Size(min = 10, max = 13, message = "{book.isbn.size}")
 	private String isbn;
 
 	@Column(name = "publisher", nullable = false)
+	@NotBlank(message = "{book.publisher.notBlank}")
 	private String publisher;
 
 	@Column(name = "published_on", nullable = false)
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@NotNull(message = "{book.date.notnNll}")
 	private LocalDate publishedOn;
+
+	public Book() {
+	}
 
 	public Book(Long id, String name, BigDecimal price, String authors, String isbn, String publisher,
 			LocalDate publishedOn) {
@@ -49,9 +62,6 @@ public class Book {
 		this.isbn = isbn;
 		this.publisher = publisher;
 		this.publishedOn = publishedOn;
-	}
-
-	public Book() {
 	}
 
 	public Long getId() {

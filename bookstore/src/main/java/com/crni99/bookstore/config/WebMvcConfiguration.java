@@ -4,26 +4,42 @@ import java.beans.PropertyVetoException;
 
 import javax.sql.DataSource;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
-import org.springframework.core.env.Environment;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 
-@SuppressWarnings("deprecation")
 @Configuration
 @PropertySource("classpath:application.properties")
-public class WebMvcConfiguration extends WebMvcConfigurerAdapter {
+public class WebMvcConfiguration {
+	
+	@Value("${spring.datasource.driver-class-name}")
+	private String driver;
 
-	private Environment env;
+	@Value("${spring.datasource.url}")
+	private String dbURL;
 
-	public WebMvcConfiguration(Environment env) {
-		this.env = env;
-	}
+	@Value("${spring.datasource.username}")
+	private String dbUsername;
+
+	@Value("${spring.datasource.password}")
+	private String dbPassword;
+
+	@Value("${connection.pool.initialPoolSize}")
+	private int connPoolInitSize;
+
+	@Value("${connection.pool.minPoolSize}")
+	private int connPoolMinSize;
+
+	@Value("${connection.pool.maxPoolSize}")
+	private int connPoolMaxSize;
+
+	@Value("${connection.pool.maxIdleTime}")
+	private int connPoolMaxIdleTime;
 
 	@Bean
 	public MessageSource messageSource() {
@@ -39,30 +55,21 @@ public class WebMvcConfiguration extends WebMvcConfigurerAdapter {
 		ComboPooledDataSource securityDataSource = new ComboPooledDataSource();
 
 		try {
-			securityDataSource.setDriverClass(env.getProperty("spring.datasource.driver-class-name"));
-		} catch (PropertyVetoException exc) {
+			securityDataSource.setDriverClass(driver);
+		} 
+		catch (PropertyVetoException exc) {
 			throw new RuntimeException(exc);
 		}
+		securityDataSource.setJdbcUrl(dbURL);
+		securityDataSource.setUser(dbUsername);
+		securityDataSource.setPassword(dbPassword);
 
-		securityDataSource.setJdbcUrl(env.getProperty("spring.datasource.url"));
-		securityDataSource.setUser(env.getProperty("spring.datasource.username"));
-		securityDataSource.setPassword(env.getProperty("spring.datasource.password"));
-
-		securityDataSource.setInitialPoolSize(getIntProperty("connection.pool.initialPoolSize"));
-		securityDataSource.setMinPoolSize(getIntProperty("connection.pool.minPoolSize"));
-		securityDataSource.setMaxPoolSize(getIntProperty("connection.pool.maxPoolSize"));
-		securityDataSource.setMaxIdleTime(getIntProperty("connection.pool.maxIdleTime"));
+		securityDataSource.setInitialPoolSize(connPoolInitSize);
+		securityDataSource.setMinPoolSize(connPoolMinSize);
+		securityDataSource.setMaxPoolSize(connPoolMaxSize);
+		securityDataSource.setMaxIdleTime(connPoolMaxIdleTime);
 
 		return securityDataSource;
-	}
-
-	private int getIntProperty(String propName) {
-
-		String propVal = env.getProperty(propName);
-
-		int intPropVal = Integer.parseInt(propVal);
-
-		return intPropVal;
 	}
 
 }

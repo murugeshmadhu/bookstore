@@ -1,10 +1,11 @@
 package com.crni99.bookstore.controller;
 
+import javax.validation.Valid;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -40,9 +41,9 @@ public class BookController {
 		model.addAttribute("book", new Book());
 		return "form";
 	}
-
+	
 	@PostMapping("/book/save")
-	public String saveBook(@Validated Book book, BindingResult result, RedirectAttributes redirect) {
+	public String saveBook(@Valid Book book, BindingResult result, RedirectAttributes redirect) {
 		if (result.hasErrors()) {
 			return "form";
 		}
