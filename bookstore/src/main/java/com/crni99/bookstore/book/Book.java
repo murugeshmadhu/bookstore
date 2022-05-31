@@ -11,7 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.Pattern;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -38,7 +38,7 @@ public class Book {
 
 	@Column(name = "isbn", nullable = false)
 	@NotBlank(message = "{book.isbn.notBlank}")
-	@Size(min = 10, max = 13, message = "{book.isbn.size}")
+	@Pattern(regexp = "\\d{10}|\\d{13}", message = "{book.isbn.size}")
 	private String isbn;
 
 	@Column(name = "publisher", nullable = false)

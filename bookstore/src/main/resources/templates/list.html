@@ -7,7 +7,7 @@
 
 	<div class="container" id="main-content">
 		<div class="row">
-			<div class="col-6 no-padding">
+			<div class="col-4 no-padding">
 				<form class="form-inline" action="#" th:action="@{/book/search}"
 					method="get">
 					<input class="form-control mr-sm-2" type="search" name="term"
@@ -18,10 +18,15 @@
 				</form>
 			</div>
 
-			<div class="col-6 no-padding">
+			<div class="col-4 no-padding">
 				<a href="#" th:href="@{/book/add}"
 					class="btn btn-success float-right"> <i
 					class="fa fa-plus-square"></i> New book
+				</a>
+			</div>
+			<div class="col-4 no-padding">
+				<a href="#" th:href="@{/logout}" class="btn btn-danger float-right">
+					<i class="fa fa-key"></i> Log out
 				</a>
 			</div>
 		</div>
@@ -77,15 +82,10 @@
 					<h5>&nbsp;</h5>
 				</div>
 			</th:block>
-			<div class="col-6 no-padding"></div>
-			<div class="col-6 no-padding">
-				<a href="#" th:href="@{/logout}" class="btn btn-danger float-right">
-					<i class="fa fa-key"></i> Log out
-				</a>
-			</div>
+			<div class="col-4 no-padding"></div>
+
 		</div>
 	</div>
-	<!-- /.container -->
 
 	<footer th:replace="layout :: footer"></footer>
 
