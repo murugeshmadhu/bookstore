@@ -18,7 +18,12 @@ Simple CRUD app using:
 ## Admin part
 ### Username and password: ognjen
 ### Show all, search, edit and delete.
-![Book_admin](https://user-images.githubusercontent.com/89692428/169869355-8d4937c6-c159-4c30-afbf-a7a1227a41c9.jpg)
+![Book_admin](https://user-images.githubusercontent.com/89692428/171167801-ad715566-caf3-4db4-9f24-0de5b8eea510.jpg)
+
 
 ### Add new book.
 ![Book admin_add](https://user-images.githubusercontent.com/89692428/164022616-68dda37b-7987-44ae-8ff6-03c1463fb5e7.png)
+
+
+### Book validation.
+![Book_admin_add_validation](https://user-images.githubusercontent.com/89692428/171167923-d21f31fa-d290-4e85-8423-ce6a976901f4.jpg)
