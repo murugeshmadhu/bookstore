@@ -17,7 +17,6 @@ public class HomeController {
 		this.bookService = bookService;
 	}
 	
-	@SuppressWarnings("deprecation")
 	@GetMapping("/search")
 	public String searchBooks(@RequestParam("term") String term, Model model) {
 		if (StringUtils.isEmpty(term)) {
