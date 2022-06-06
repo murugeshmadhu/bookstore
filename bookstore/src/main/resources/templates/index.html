@@ -30,43 +30,59 @@
 				</button>
 			</div>
 
-			<th:block th:if="${#lists.isEmpty(books)}">
+			<th:block th:if="${#lists.isEmpty(bookPage)}">
 				<h5>No books</h5>
 			</th:block>
+			<div class="table-responsive">
+				<h5>List of books</h5>
+				<table class="table table-bordered table-hover">
+					<thead>
+						<tr>
+							<th>Name</th>
+							<th>Price ($)</th>
+							<th>Authors</th>
+							<th>ISBN</th>
+							<th>Publisher</th>
+							<th>Published on</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="book, iStat : ${bookPage.content}"
+							th:alt-title="${iStat.even}? 'even' : 'odd'">
+							<td th:text="${book.name}"></td>
+							<td th:text="${book.price}"></td>
+							<td th:text="${book.authors}"></td>
+							<td th:text="${book.isbn}"></td>
+							<td th:text="${book.publisher}"></td>
+							<td th:text="${book.publishedOn}"></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div th:if="${bookPage.totalPages > 0}" class="pagination"
+				th:each="pageNumber : ${pageNumbers}">
+				<nav aria-label="Page navigation example">
+					<ul class="pagination">
+						<li class="page-item"><a
+							th:href="@{/(size=${bookPage.size}, page=${pageNumber})}"
+							th:text=${pageNumber} th:class="page-link"></a></li>
+					</ul>
+				</nav>
+			</div>
 
-			<th:block th:unless="${#lists.isEmpty(books)}">
-				<div class="table-responsive">
-					<h5>List of books</h5>
-					<table class="table table-bordered table-hover">
-						<thead>
-							<tr>
-								<th>#</th>
-								<th>Name</th>
-								<th>Price ($)</th>
-								<th>Authors</th>
-								<th>ISBN</th>
-								<th>Publisher</th>
-								<th>Published on</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr th:each="book,item : ${books}">
-								<th scope="row" th:text="${item.count}"></th>
-								<td th:text="${book.name}"></td>
-								<td th:text="${book.price}"></td>
-								<td th:text="${book.authors}"></td>
-								<td th:text="${book.isbn}"></td>
-								<td th:text="${book.publisher}"></td>
-								<td th:text="${book.publishedOn}"></td>
-							</tr>
-						</tbody>
-					</table>
-				</div>
-			</th:block>
+			<!-- 			<nav aria-label="Page navigation example"> -->
+			<!-- 				<ul class="pagination"> -->
+			<!-- 					<li class="page-item"><a class="page-link" href="#">Previous</a></li> -->
+			<!-- 					<li class="page-item"><a class="page-link" href="#">1</a></li> -->
+			<!-- 					<li class="page-item"><a class="page-link" href="#">2</a></li> -->
+			<!-- 					<li class="page-item"><a class="page-link" href="#">3</a></li> -->
+			<!-- 					<li class="page-item"><a class="page-link" href="#">Next</a></li> -->
+			<!-- 				</ul> -->
+			<!-- 			</nav> -->
+
 		</div>
 	</div>
 
 	<footer th:replace="layout :: footer"></footer>
-
 </body>
 </html>

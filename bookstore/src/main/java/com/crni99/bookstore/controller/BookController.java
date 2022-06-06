@@ -24,12 +24,6 @@ public class BookController {
 		this.bookService = bookService;
 	}
 
-	@GetMapping("/")
-	public String showIndex(Model model) {
-		model.addAttribute("books", bookService.findAll());
-		return "index";
-	}
-
 	@GetMapping("/book")
 	public String getAllBooks(Model model) {
 		model.addAttribute("books", bookService.findAll());
