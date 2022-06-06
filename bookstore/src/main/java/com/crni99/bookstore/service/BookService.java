@@ -23,10 +23,6 @@ public class BookService {
 		this.bookRepository = bookRepository;
 	}
 
-	public Iterable<Book> findAll() {
-		return bookRepository.findAll();
-	}
-
 	public Page<Book> findPaginated(Pageable pageable, String term) {
 
 		return page(pageable, term);
@@ -60,10 +56,6 @@ public class BookService {
 
 	public void save(Book book) {
 		bookRepository.save(book);
-	}
-
-	public List<Book> search(String term) {
-		return bookRepository.findByNameContaining(term);
 	}
 
 	public Optional<Book> findBookById(Long id) {

@@ -1,7 +1,14 @@
 package com.crni99.bookstore.controller;
 
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+
 import javax.validation.Valid;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
@@ -25,8 +32,40 @@ public class BookController {
 	}
 
 	@GetMapping("/book")
-	public String getAllBooks(Model model) {
-		model.addAttribute("books", bookService.findAll());
+	public String getAllBooks(Model model, @RequestParam("page") Optional<Integer> page,
+			@RequestParam("size") Optional<Integer> size) {
+
+		return page(null, model, page, size);
+	}
+
+	@GetMapping("/book/search")
+	public String searchBooks(@RequestParam("term") String term, Model model,
+			@RequestParam("page") Optional<Integer> page, @RequestParam("size") Optional<Integer> size) {
+		if (StringUtils.isEmpty(term)) {
+			return "redirect:/book";
+		}
+		return page(term, model, page, size);
+	}
+
+	private String page(@RequestParam("term") String term, Model model, @RequestParam("page") Optional<Integer> page,
+			@RequestParam("size") Optional<Integer> size) {
+		int currentPage = page.orElse(1);
+		int pageSize = size.orElse(10);
+
+		Page<Book> bookPage;
+
+		if (term == null) {
+			bookPage = bookService.findPaginated(PageRequest.of(currentPage - 1, pageSize), null);
+		} else {
+			bookPage = bookService.findPaginated(PageRequest.of(currentPage - 1, pageSize), term);
+		}
+		model.addAttribute("bookPage", bookPage);
+
+		int totalPages = bookPage.getTotalPages();
+		if (totalPages > 0) {
+			List<Integer> pageNumbers = IntStream.rangeClosed(1, totalPages).boxed().collect(Collectors.toList());
+			model.addAttribute("pageNumbers", pageNumbers);
+		}
 		return "list";
 	}
 
@@ -35,7 +74,7 @@ public class BookController {
 		model.addAttribute("book", new Book());
 		return "form";
 	}
-	
+
 	@PostMapping("/book/save")
 	public String saveBook(@Valid Book book, BindingResult result, RedirectAttributes redirect) {
 		if (result.hasErrors()) {
@@ -44,15 +83,6 @@ public class BookController {
 		bookService.save(book);
 		redirect.addFlashAttribute("successMessage", "Saved book successfully!");
 		return "redirect:/book";
-	}
-
-	@GetMapping("/book/search")
-	public String searchBooks(@RequestParam("term") String term, Model model) {
-		if (StringUtils.isEmpty(term)) {
-			return "redirect:/book";
-		}
-		model.addAttribute("books", bookService.search(term));
-		return "list";
 	}
 
 	@GetMapping("/book/{id}/edit")

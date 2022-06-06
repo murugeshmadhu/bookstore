@@ -54,17 +54,6 @@ class BookServiceTest {
 	}
 
 	@Test
-	void shouldFindAllBooks() {
-		List<Book> books = new ArrayList<>();
-		books.add(new Book(ID_1, NAME_1, PRICE_1, AUTHORS_1, ISBN_1, PUBLISHER_1, DOB_1));
-		books.add(new Book(ID_2, NAME_2, PRICE_2, AUTHORS_2, ISBN_2, PUBLISHER_2, DOB_2));
-
-		when(bookRepository.findAll()).thenReturn(books);
-
-		assertThat(bookService.findAll()).isEqualTo(books);
-	}
-
-	@Test
 	void shouldSaveBook() {
 		Book book = new Book(ID_1, NAME_1, PRICE_1, AUTHORS_1, ISBN_1, PUBLISHER_1, DOB_1);
 		bookService.save(book);
@@ -74,19 +63,6 @@ class BookServiceTest {
 
 		Book capturedBook = bookArgumentCaptor.getValue();
 		assertThat(capturedBook).isEqualTo(book);
-	}
-
-	@Test
-	void shouldFindBookByTerm() {
-		List<Book> books = new ArrayList<>();
-		Book book1 = new Book(ID_1, NAME_1, PRICE_1, AUTHORS_1, ISBN_1, PUBLISHER_1, DOB_1);
-		Book book2 = new Book(ID_2, NAME_1, PRICE_2, AUTHORS_2, ISBN_2, PUBLISHER_2, DOB_2);
-		books.add(book1);
-		books.add(book2);
-
-		when(bookRepository.findByNameContaining(NAME_1)).thenReturn(books);
-
-		assertThat(bookService.search(NAME_1)).isEqualTo(books);
 	}
 
 	@Test

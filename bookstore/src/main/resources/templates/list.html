@@ -42,17 +42,16 @@
 				</button>
 			</div>
 
-			<th:block th:if="${#lists.isEmpty(books)}">
+			<th:block th:if="${#lists.isEmpty(bookPage.content)}">
 				<h5>No books</h5>
 			</th:block>
 
-			<th:block th:unless="${#lists.isEmpty(books)}">
+			<th:block th:unless="${#lists.isEmpty(bookPage.content)}">
 				<div class="table-responsive">
 					<h5>List of books</h5>
 					<table class="table table-bordered table-hover">
 						<thead>
 							<tr>
-								<th>#</th>
 								<th>Name</th>
 								<th>Price ($)</th>
 								<th>Authors</th>
@@ -63,8 +62,8 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr th:each="book,item : ${books}">
-								<th scope="row" th:text="${item.count}"></th>
+							<tr th:each="book, iStat : ${bookPage.content}"
+								th:alt-title="${iStat.even}? 'even' : 'odd'">
 								<td th:text="${book.name}"></td>
 								<td th:text="${book.price}"></td>
 								<td th:text="${book.authors}"></td>
@@ -81,9 +80,18 @@
 					</table>
 					<h5>&nbsp;</h5>
 				</div>
+				<div th:if="${bookPage.totalPages > 0}" class="pagination"
+					th:each="pageNumber : ${pageNumbers}">
+					<nav aria-label="Page navigation example">
+						<ul class="pagination">
+							<li class="page-item"><a
+								th:href="@{/book(size=${bookPage.size}, page=${pageNumber})}"
+								th:text=${pageNumber} th:class="page-link"></a></li>
+						</ul>
+					</nav>
+				</div>
 			</th:block>
 			<div class="col-4 no-padding"></div>
-
 		</div>
 	</div>
 
