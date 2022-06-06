@@ -13,12 +13,13 @@ Simple CRUD app using:
 # Screenshots
 
 ## User part
-![Book_user](https://user-images.githubusercontent.com/89692428/170024574-c6f11e0d-b6bd-46d8-8457-8ae052b4b9a6.jpg)
+![Book_user](https://user-images.githubusercontent.com/89692428/172184500-7ec10297-72eb-470b-b56b-8c7a75621583.jpg)
+
 
 ## Admin part
 ### Username and password: ognjen
 ### Show all, search, edit and delete.
-![Book_admin](https://user-images.githubusercontent.com/89692428/171167801-ad715566-caf3-4db4-9f24-0de5b8eea510.jpg)
+![Book_admin](https://user-images.githubusercontent.com/89692428/172184553-1d6275b4-1f11-48e1-8a7c-8fe1d8b0f1f8.jpg)
 
 
 ### Add new book.
