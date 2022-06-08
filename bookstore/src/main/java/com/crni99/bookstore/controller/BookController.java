@@ -87,13 +87,13 @@ public class BookController {
 		return "redirect:/book";
 	}
 
-	@GetMapping("/{id}/edit")
+	@GetMapping("/edit/{id}")
 	public String editBook(@PathVariable("id") Long id, Model model) {
 		model.addAttribute("book", bookService.findBookById(id));
 		return "form";
 	}
 
-	@GetMapping("/{id}/delete")
+	@GetMapping("/delete/{id}")
 	public String deleteBook(@PathVariable Long id, RedirectAttributes redirect) {
 		bookService.delete(id);
 		redirect.addFlashAttribute("successMessage", "Deleted book successfully!");

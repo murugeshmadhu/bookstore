@@ -59,7 +59,7 @@
 								<td th:text="${book.publisher}"></td>
 								<td th:text="${book.publishedOn}"></td>
 								<td><a href="#"
-									th:href="@{/cart/{id}/addToCart(id=${book.id})}"
+									th:href="@{/cart/add/{id}(id=${book.id})}"
 									class="mr-sm-2 text-success"> <i
 										class="fa fa-plus-circle fa-bigger"></i>
 								</a></td>
