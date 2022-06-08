@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="layout :: head"></head>
+
+<body>
+	<nav th:replace="layout :: header"></nav>
+
+	<div class="container" id="main-content">
+		<div class="row mt-4">
+			<div th:if="${successMessage}"
+				class="col-12 alert alert-success alert-dismissible fade show"
+				role="alert">
+				<span th:text="${successMessage}"></span>
+				<button type="button" class="close" data-dismiss="alert"
+					aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+
+			<th:block th:if="${#lists.isEmpty(books)}">
+				<h5>No books added to cart</h5>
+			</th:block>
+
+			<th:block th:unless="${#lists.isEmpty(books)}">
+				<div class="table-responsive">
+					<h5>Books added to cart</h5>
+					<table class="table table-bordered table-hover">
+						<thead>
+							<tr>
+								<th>Name</th>
+								<th>Authors</th>
+								<th>Price ($)</th>
+								<th>Delete from cart</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="book, iStat : ${books}"
+								th:alt-title="${iStat.even}? 'even' : 'odd'">
+								<td th:text="${book.name}"></td>
+								<td th:text="${book.authors}"></td>
+								<td th:text="${book.price}"></td>
+								<td><a href="#"
+									th:href="@{/cart/{id}/removeFromCart(id=${book.id})}"
+									class="mr-sm-2 text-danger"> <i class="fa fa-trash fa-bigger"></i>
+								</a></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div class="col-1" style="padding-top: 25px;">
+					<h6 class="font-weight-bold">Total:</h6>
+				</div>
+				<div class="col-1" style="padding-top: 25px;">
+					<h6 class="font-weight-bold" th:text="${total}"></h6>
+				</div>
+			</th:block>
+		</div>
+	</div>
+
+	<footer th:replace="layout :: footer"></footer>
+</body>
+</html>

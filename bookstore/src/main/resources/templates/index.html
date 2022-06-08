@@ -46,6 +46,7 @@
 								<th>ISBN</th>
 								<th>Publisher</th>
 								<th>Published on</th>
+								<th>Add to Cart</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -57,6 +58,11 @@
 								<td th:text="${book.isbn}"></td>
 								<td th:text="${book.publisher}"></td>
 								<td th:text="${book.publishedOn}"></td>
+								<td><a href="#"
+									th:href="@{/cart/{id}/addToCart(id=${book.id})}"
+									class="mr-sm-2 text-success"> <i
+										class="fa fa-plus-circle fa-bigger"></i>
+								</a></td>
 							</tr>
 						</tbody>
 					</table>

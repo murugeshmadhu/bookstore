@@ -25,7 +25,7 @@ public class HomeController {
 		this.bookService = bookService;
 	}
 
-	@GetMapping("/")
+	@GetMapping(value = { "", "/" })
 	public String listBooks(Model model, @RequestParam("page") Optional<Integer> page,
 			@RequestParam("size") Optional<Integer> size) {
 

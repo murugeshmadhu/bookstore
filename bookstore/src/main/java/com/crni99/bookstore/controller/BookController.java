@@ -16,6 +16,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -23,6 +24,7 @@ import com.crni99.bookstore.book.Book;
 import com.crni99.bookstore.service.BookService;
 
 @Controller
+@RequestMapping("/book")
 public class BookController {
 
 	private final BookService bookService;
@@ -31,14 +33,14 @@ public class BookController {
 		this.bookService = bookService;
 	}
 
-	@GetMapping("/book")
+	@GetMapping(value = { "", "/" })
 	public String getAllBooks(Model model, @RequestParam("page") Optional<Integer> page,
 			@RequestParam("size") Optional<Integer> size) {
 
 		return page(null, model, page, size);
 	}
 
-	@GetMapping("/book/search")
+	@GetMapping("/search")
 	public String searchBooks(@RequestParam("term") String term, Model model,
 			@RequestParam("page") Optional<Integer> page, @RequestParam("size") Optional<Integer> size) {
 		if (StringUtils.isEmpty(term)) {
@@ -69,13 +71,13 @@ public class BookController {
 		return "list";
 	}
 
-	@GetMapping("/book/add")
+	@GetMapping("/add")
 	public String addBook(Model model) {
 		model.addAttribute("book", new Book());
 		return "form";
 	}
 
-	@PostMapping("/book/save")
+	@PostMapping("/save")
 	public String saveBook(@Valid Book book, BindingResult result, RedirectAttributes redirect) {
 		if (result.hasErrors()) {
 			return "form";
@@ -85,13 +87,13 @@ public class BookController {
 		return "redirect:/book";
 	}
 
-	@GetMapping("/book/{id}/edit")
+	@GetMapping("/{id}/edit")
 	public String editBook(@PathVariable("id") Long id, Model model) {
 		model.addAttribute("book", bookService.findBookById(id));
 		return "form";
 	}
 
-	@GetMapping("/book/{id}/delete")
+	@GetMapping("/{id}/delete")
 	public String deleteBook(@PathVariable Long id, RedirectAttributes redirect) {
 		bookService.delete(id);
 		redirect.addFlashAttribute("successMessage", "Deleted book successfully!");
