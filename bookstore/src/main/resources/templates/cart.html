@@ -6,12 +6,17 @@
 	<nav th:replace="layout :: header"></nav>
 
 	<div class="container" id="main-content">
-		<div class="row">
-			<div class="col-4 no-padding">
-				<a href="#" th:href="@{/cart/remove/all}"
-					class="mr-sm-2 text-danger"> REMOVE ALL <i
-					class="fa fa-trash-o fa-bigger"></i>
-				</a>
+		<div class="row d-flex justify-content-center">
+			<div class="col-3 no-padding">&nbsp;</div>
+			<div class="col-3 no-padding">&nbsp;</div>
+			<div class="col-3 no-padding">&nbsp;</div>
+			<div class="col-1 no-padding">
+				<form class="form-inline" action="#" th:action="@{/cart/remove/all}"
+					method="get">
+					<button class="btn btn-danger" type="submit">
+						<i class="fa fa-trash-o fa-bigger"></i> Delete all
+					</button>
+				</form>
 			</div>
 		</div>
 		<div class="row mt-4">
