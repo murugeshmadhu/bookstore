@@ -47,8 +47,8 @@
 			<th:block th:unless="${#lists.isEmpty(books)}">
 				<div class="table-responsive">
 					<h5>Books added to cart</h5>
-					<table class="table table-bordered table-hover">
-						<thead>
+					<table class="table table-bordered table-striped">
+						<thead class="thead-dark">
 							<tr>
 								<th>Name</th>
 								<th>Authors</th>
@@ -56,16 +56,11 @@
 								<th>&nbsp;</th>
 							</tr>
 						</thead>
-						<tbody>
+						<tbody class="table-secondary">
 							<tr th:each="book, iStat : ${books}">
 								<td th:text="${book.name}"></td>
 								<td th:text="${book.authors}"></td>
 								<td th:text="${book.price}"></td>
-								<!-- 								<td><a href="#" -->
-								<!-- 									th:href="@{/cart/remove/{id}(id=${book.id})}" -->
-								<!-- 									class="mr-sm-2 text-danger"> <i -->
-								<!-- 										class="fa fa-minus-circle fa-bigger"></i> -->
-								<!-- 								</a></td> -->
 								<td>
 									<form class="form-inline justify-content-center" action="#"
 										th:action="@{/cart/remove/{id}(id=${book.id})}" method="get">

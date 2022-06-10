@@ -84,7 +84,7 @@
 					th:each="pageNumber : ${pageNumbers}">
 					<nav aria-label="Page navigation example">
 						<ul class="pagination">
-							<li class="page-item"><a
+							<li class="page-item font-weight-bold"><a
 								th:href="@{/book(size=${bookPage.size}, page=${pageNumber})}"
 								th:text=${pageNumber} th:class="page-link"></a></li>
 						</ul>
