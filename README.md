@@ -13,19 +13,16 @@ Simple CRUD app using:
 # Screenshots
 
 ## User part
-![Book_user](https://user-images.githubusercontent.com/89692428/172802182-c8ec1926-5bdd-407d-8f46-82cd3c15a719.jpg)
+![Book_user](https://user-images.githubusercontent.com/89692428/173063630-c0e3247a-3087-4d76-9bf2-a5aca03e796c.jpg)
 
 ### Shopping Cart
-![Cart_user](https://user-images.githubusercontent.com/89692428/172802229-e83e4fd4-9602-4265-a5fc-66657ffe4b0d.jpg)
+![Cart_user](https://user-images.githubusercontent.com/89692428/173063729-16e76323-86c8-4ca4-9dca-b57953c90433.jpg)
 
 
 ## Admin part
 ### Username and password: ognjen
 ### Show all, search, edit and delete.
-![Book_admin](https://user-images.githubusercontent.com/89692428/172802283-a0cfc415-b18a-4c58-84b9-f9ef2875f90d.jpg)
+![Book_admin](https://user-images.githubusercontent.com/89692428/173063781-cc5586f6-9b85-4df3-b7e7-212208cb14bf.jpg)
 
-### Add new book.
-![Book admin_add](https://user-images.githubusercontent.com/89692428/164022616-68dda37b-7987-44ae-8ff6-03c1463fb5e7.png)
-
-### Book validation.
-![Book_admin_add_validation](https://user-images.githubusercontent.com/89692428/171167923-d21f31fa-d290-4e85-8423-ce6a976901f4.jpg)
+### Add new book / validation
+![Book admin_add](https://user-images.githubusercontent.com/89692428/173063850-4749066d-ef7a-44f0-b3a3-76c28f6e7631.jpg)
