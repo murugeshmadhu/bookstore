@@ -6,15 +6,25 @@
 	<nav th:replace="layout :: header"></nav>
 
 	<div class="container" id="main-content">
-		<div class="row d-flex justify-content-center">
-			<div class="col-3 no-padding">&nbsp;</div>
-			<div class="col-3 no-padding">&nbsp;</div>
-			<div class="col-3 no-padding">&nbsp;</div>
-			<div class="col-1 no-padding">
-				<form class="form-inline" action="#" th:action="@{/cart/remove/all}"
-					method="get">
+		<div class="row h-100">
+			<div class="col-3 no-padding">
+				<form class="form-inline" action="#" method="get">
+					<button class="btn btn-primary" type="submit">
+						<i class="fa fa-cart-arrow-down fa-bigger"></i> CHECKOUT
+					</button>
+				</form>
+			</div>
+			<div class="col-3 my-auto">
+				<i class="fa fa-usd fa-bigger d-flex justify-content-end">&nbsp;TOTAL:</i>
+			</div>
+			<div class="col-3 my-auto">
+				<i class="font-weight-bold" th:text="${total}"></i>
+			</div>
+			<div class="col-3 no-padding">
+				<form class="form-inline justify-content-end" action="#"
+					th:action="@{/cart/remove/all}" method="get">
 					<button class="btn btn-danger" type="submit">
-						<i class="fa fa-trash-o fa-bigger"></i> Delete all
+						<i class="fa fa-trash-o fa-bigger"></i> DELETE ALL
 					</button>
 				</form>
 			</div>
@@ -43,7 +53,7 @@
 								<th>Name</th>
 								<th>Authors</th>
 								<th>Price ($)</th>
-								<th>Delete from cart</th>
+								<th>&nbsp;</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -51,11 +61,19 @@
 								<td th:text="${book.name}"></td>
 								<td th:text="${book.authors}"></td>
 								<td th:text="${book.price}"></td>
-								<td><a href="#"
-									th:href="@{/cart/remove/{id}(id=${book.id})}"
-									class="mr-sm-2 text-danger"> <i
-										class="fa fa-minus-circle fa-bigger"></i>
-								</a></td>
+								<!-- 								<td><a href="#" -->
+								<!-- 									th:href="@{/cart/remove/{id}(id=${book.id})}" -->
+								<!-- 									class="mr-sm-2 text-danger"> <i -->
+								<!-- 										class="fa fa-minus-circle fa-bigger"></i> -->
+								<!-- 								</a></td> -->
+								<td>
+									<form class="form-inline justify-content-center" action="#"
+										th:action="@{/cart/remove/{id}(id=${book.id})}" method="get">
+										<button class="btn btn-danger" type="submit">
+											<i class="fa fa-minus-circle"></i> DELETE FROM CART
+										</button>
+									</form>
+								</td>
 							</tr>
 						</tbody>
 					</table>

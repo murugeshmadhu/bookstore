@@ -18,6 +18,8 @@ import com.crni99.bookstore.service.BookService;
 
 @Controller
 public class HomeController {
+	
+	private static final int pageSizeDefault = 6;
 
 	private final BookService bookService;
 
@@ -44,7 +46,7 @@ public class HomeController {
 	private String page(@RequestParam("term") String term, Model model, @RequestParam("page") Optional<Integer> page,
 			@RequestParam("size") Optional<Integer> size) {
 		int currentPage = page.orElse(1);
-		int pageSize = size.orElse(5);
+		int pageSize = size.orElse(pageSizeDefault);
 
 		Page<Book> bookPage;
 

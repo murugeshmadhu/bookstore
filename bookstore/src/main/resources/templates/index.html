@@ -35,37 +35,67 @@
 			</th:block>
 
 			<th:block th:unless="${#lists.isEmpty(bookPage.content)}">
-				<div class="table-responsive">
-					<h5>List of books</h5>
-					<table class="table table-bordered table-hover">
-						<thead>
-							<tr>
-								<th>Name</th>
-								<th>Authors</th>
-								<th>Publisher</th>
-								<th>Published on</th>
-								<th>ISBN</th>
-								<th>Price ($)</th>
-								<th>Action</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr th:each="book, iStat : ${bookPage.content}"
-								th:alt-title="${iStat.even}? 'even' : 'odd'">
-								<td th:text="${book.name}"></td>
-								<td th:text="${book.authors}"></td>
-								<td th:text="${book.publisher}"></td>
-								<td th:text="${book.publishedOn}"></td>
-								<td th:text="${book.isbn}"></td>
-								<td th:text="${book.price}"></td>
-								<td><a href="#" th:href="@{/cart/add/{id}(id=${book.id})}"
-									class="mr-sm-2 text-success"> <i
-										class="fa fa-plus-circle fa-bigger"></i>
-								</a></td>
-							</tr>
-						</tbody>
-					</table>
+				<div class="card-deck"
+					style="display: flex; justify-content: space-around; margin-top: 20px;">
+					<div class="col-sm-6"
+						style="max-width: 32rem; display: inline-block; width: 32rem;"
+						th:each="book, iStat : ${bookPage.content}">
+						<div class="card" style="width: 32rem; margin-bottom: 50px">
+							<!-- 							<img class="card-img-top" src="..." alt="Card image cap"> -->
+							<div class="card-body">
+								<h5 class="card-title" th:text="${book.name}"></h5>
+								<p class="card-text" th:text="${book.authors}"></p>
+							</div>
+							<ul class="list-group list-group-flush">
+								<li class="list-group-item" th:text="${book.publisher}"></li>
+								<li class="list-group-item" th:text="${book.publishedOn}"></li>
+								<li class="list-group-item" th:text="${book.isbn}"></li>
+							</ul>
+							<div class="card-footer" style="display: inline">
+								<i class="font-weight-bold align-middle"
+									th:text="${book.price} + ' ' + '$'"></i>
+								<form class="form-inline" style="float: right" action="#"
+									th:action="@{/cart/add/{id}(id=${book.id})}" method="get">
+									<button class="btn btn-success" type="submit">
+										<i class="fa fa-plus-circle"></i> Add to cart
+									</button>
+								</form>
+							</div>
+						</div>
+					</div>
 				</div>
+
+				<!-- 				<div class="table-responsive"> -->
+				<!-- 					<h5>List of books</h5> -->
+				<!-- 					<table class="table table-bordered table-hover"> -->
+				<!-- 						<thead> -->
+				<!-- 							<tr> -->
+				<!-- 								<th>Name</th> -->
+				<!-- 								<th>Authors</th> -->
+				<!-- 								<th>Publisher</th> -->
+				<!-- 								<th>Published on</th> -->
+				<!-- 								<th>ISBN</th> -->
+				<!-- 								<th>Price ($)</th> -->
+				<!-- 								<th>Add to cart</th> -->
+				<!-- 							</tr> -->
+				<!-- 						</thead> -->
+				<!-- 						<tbody> -->
+				<!-- 							<tr th:each="book, iStat : ${bookPage.content}"> -->
+				<!-- 								<td th:text="${book.name}"></td> -->
+				<!-- 								<td th:text="${book.authors}"></td> -->
+				<!-- 								<td th:text="${book.publisher}"></td> -->
+				<!-- 								<td th:text="${book.publishedOn}"></td> -->
+				<!-- 								<td th:text="${book.isbn}"></td> -->
+				<!-- 								<td th:text="${book.price}"></td> -->
+				<!-- 								<td><a href="#" th:href="@{/cart/add/{id}(id=${book.id})}" -->
+				<!-- 									class="mr-sm-2 text-success"> <i -->
+				<!-- 										class="fa fa-plus-circle fa-bigger"></i> -->
+				<!-- 								</a></td> -->
+				<!-- 							</tr> -->
+				<!-- 						</tbody> -->
+				<!-- 					</table> -->
+				<!-- 				</div> -->
+
 				<div th:if="${bookPage.totalPages > 0}" class="pagination"
 					th:each="pageNumber : ${pageNumbers}">
 					<nav aria-label="Page navigation example">
