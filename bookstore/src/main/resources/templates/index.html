@@ -40,16 +40,20 @@
 					<div class="col-sm-6"
 						style="max-width: 32rem; display: inline-block; width: 32rem;"
 						th:each="book, iStat : ${bookPage.content}">
-						<div class="card" style="width: 32rem; margin-bottom: 50px">
-							<!-- 							<img class="card-img-top" src="..." alt="Card image cap"> -->
+						<div class="card text-white bg-dark"
+							style="width: 32rem; margin-bottom: 50px">
+							<!-- <img class="card-img-top" src="..." alt="Card image cap"> -->
 							<div class="card-body">
 								<h5 class="card-title" th:text="${book.name}"></h5>
 								<p class="card-text" th:text="${book.authors}"></p>
 							</div>
 							<ul class="list-group list-group-flush">
-								<li class="list-group-item" th:text="${book.publisher}"></li>
-								<li class="list-group-item" th:text="${book.publishedOn}"></li>
-								<li class="list-group-item" th:text="${book.isbn}"></li>
+								<li class="list-group-item text-white bg-dark"
+									th:text="${book.publisher}"></li>
+								<li class="list-group-item text-white bg-dark"
+									th:text="${book.publishedOn}"></li>
+								<li class="list-group-item text-white bg-dark"
+									th:text="${book.isbn}"></li>
 							</ul>
 							<div class="card-footer" style="display: inline">
 								<i class="font-weight-bold align-middle"
