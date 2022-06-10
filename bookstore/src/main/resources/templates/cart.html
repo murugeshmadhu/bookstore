@@ -7,20 +7,21 @@
 
 	<div class="container" id="main-content">
 		<div class="row h-100">
-			<div class="col-3 no-padding">
+			<div class="col-4 no-padding">
 				<form class="form-inline" action="#" method="get">
 					<button class="btn btn-primary" type="submit">
 						<i class="fa fa-cart-arrow-down fa-bigger"></i> CHECKOUT
 					</button>
 				</form>
 			</div>
-			<div class="col-3 my-auto">
-				<i class="fa fa-usd fa-bigger d-flex justify-content-end">&nbsp;TOTAL:</i>
+			<div class="col-4 no-padding"
+				style="display: flex; justify-content: center;">
+				<button type="button" class="btn btn-info">
+					TOTAL&nbsp;&nbsp;<span class="badge badge-dark" th:text="${total}"></span>
+					&nbsp;<i class="fa fa-usd" aria-hidden="true" style="color: #343a40"></i>
+				</button>
 			</div>
-			<div class="col-3 my-auto">
-				<i class="font-weight-bold" th:text="${total}"></i>
-			</div>
-			<div class="col-3 no-padding">
+			<div class="col-4 no-padding">
 				<form class="form-inline justify-content-end" action="#"
 					th:action="@{/cart/remove/all}" method="get">
 					<button class="btn btn-danger" type="submit">
@@ -45,39 +46,40 @@
 			</th:block>
 
 			<th:block th:unless="${#lists.isEmpty(books)}">
-				<div class="table-responsive">
-					<h5>Books added to cart</h5>
-					<table class="table table-bordered table-striped">
-						<thead class="thead-dark">
-							<tr>
-								<th>Name</th>
-								<th>Authors</th>
-								<th>Price ($)</th>
-								<th>&nbsp;</th>
-							</tr>
-						</thead>
-						<tbody class="table-secondary">
-							<tr th:each="book, iStat : ${books}">
-								<td th:text="${book.name}"></td>
-								<td th:text="${book.authors}"></td>
-								<td th:text="${book.price}"></td>
-								<td>
-									<form class="form-inline justify-content-center" action="#"
-										th:action="@{/cart/remove/{id}(id=${book.id})}" method="get">
-										<button class="btn btn-danger" type="submit">
-											<i class="fa fa-minus-circle"></i> DELETE FROM CART
-										</button>
-									</form>
-								</td>
-							</tr>
-						</tbody>
-					</table>
+				<div class="card-deck"
+					style="display: flex; justify-content: space-around; margin-top: 20px;">
+					<div class="col-sm-6"
+						style="max-width: 32rem; display: inline-table; width: 32rem;"
+						th:each="book, iStat : ${books}">
+						<div class="card text-white bg-dark"
+							style="width: 32rem; margin-bottom: 50px">
+							<!-- <img class="card-img-top" src="..." alt="Card image cap"> -->
+							<div class="card-body">
+								<h5 class="card-title" th:text="${book.name}"></h5>
+								<p class="card-text" th:text="${book.authors}"></p>
+							</div>
+							<div class="card-footer" style="display: inline">
+								<i class="font-weight-bold align-middle"
+									th:text="${book.price} + ' ' + '$'"></i>
+								<form class="form-inline" style="float: right" action="#"
+									th:action="@{/cart/remove/{id}(id=${book.id})}" method="get">
+									<button class="btn btn-danger" type="submit">
+										<i class="fa fa-plus-circle"></i> Remove from cart
+									</button>
+								</form>
+							</div>
+						</div>
+					</div>
 				</div>
-				<div class="col-1" style="padding-top: 25px;">
-					<h6 class="font-weight-bold">Total:</h6>
-				</div>
-				<div class="col-1" style="padding-top: 25px;">
-					<h6 class="font-weight-bold" th:text="${total}"></h6>
+				<div th:if="${bookPage.totalPages > 0}" class="pagination"
+					th:each="pageNumber : ${pageNumbers}">
+					<nav aria-label="Page navigation example">
+						<ul class="pagination">
+							<li class="page-item font-weight-bold"><a
+								th:href="@{/(size=${bookPage.size}, page=${pageNumber})}"
+								th:text=${pageNumber} th:class="page-link"></a></li>
+						</ul>
+					</nav>
 				</div>
 			</th:block>
 		</div>
