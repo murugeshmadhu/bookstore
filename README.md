@@ -13,16 +13,16 @@ Simple CRUD app using:
 # Screenshots
 
 ## User part
-![Book_user](https://user-images.githubusercontent.com/89692428/173063630-c0e3247a-3087-4d76-9bf2-a5aca03e796c.jpg)
+
+![Book_user](https://user-images.githubusercontent.com/89692428/174270932-c4837762-9ea7-4223-82d3-ba04995cc48a.jpg)
 
 ### Shopping Cart
-![Cart_user](https://user-images.githubusercontent.com/89692428/173063729-16e76323-86c8-4ca4-9dca-b57953c90433.jpg)
-
+![Cart_user](https://user-images.githubusercontent.com/89692428/174271029-832d18a0-e71c-4a2f-afd8-93dd99a76078.jpg)
 
 ## Admin part
 ### Username and password: ognjen
 ### Show all, search, edit and delete.
-![Book_admin](https://user-images.githubusercontent.com/89692428/173063781-cc5586f6-9b85-4df3-b7e7-212208cb14bf.jpg)
+![Book_admin](https://user-images.githubusercontent.com/89692428/174271088-fdae34a8-abc5-411f-8ebb-719de4ed1a31.jpg)
 
 ### Add new book / validation
-![Book admin_add](https://user-images.githubusercontent.com/89692428/173063850-4749066d-ef7a-44f0-b3a3-76c28f6e7631.jpg)
+![Book admin_add](https://user-images.githubusercontent.com/89692428/174271116-8e05cf80-1124-41ad-ae01-748fa5b9bf7d.jpg)
