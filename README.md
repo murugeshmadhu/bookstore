@@ -1,4 +1,4 @@
-# Book Store - Admin Part
+# Book Store
 
 Simple CRUD app using:
 
