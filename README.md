@@ -10,6 +10,18 @@ Simple CRUD app using:
 - H2 database
 - Tests
 
+# Docker
+```
+docker pull crni99/bookstore
+```
+```
+docker run -d -p 8080:8080
+```
+- Open a web browser and paste this:
+```
+http://localhost:8080/
+```
+
 # Screenshots
 
 ## User part
