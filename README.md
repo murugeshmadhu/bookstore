@@ -1,5 +1,7 @@
 # Book Store
 
+[bookstore-v2 Google Drive](https://drive.google.com/drive/folders/1SA0wid6DhjOl9YblS7uw_zk2JcForKDY?usp=sharing)
+
 Simple CRUD app using:
 
 - Spring Boot
